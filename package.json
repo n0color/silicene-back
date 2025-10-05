@@ -1,0 +1,23 @@
+{
+  "name": "silicene-back",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/n0color/silicene-back#readme",
+  "bugs": {
+    "url": "https://github.com/n0color/silicene-back/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n0color/silicene-back.git"
+  },
+  "license": "ISC",
+  "author": "n0color",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
