@@ -1,12 +1,18 @@
+import type { Express, Request, Response, NextFunction } from 'express'
 import express from 'express';
+import { config } from 'dotenv';
 
-const app = express();
-const port = Number(process.env.PORT) || 3000;
+import { backRouter } from './routes.js';
 
-app.get('/', (request, response) => {
-  response.send('Express + TypeScript Server');
-});
+export default function buildApp(): Express {
+  config();
+  const app = express();
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+  app.use(express.json());
+  app.use('/', backRouter)
+  app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  });
+  return app;
+}
