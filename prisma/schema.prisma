@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model chats {
+  id         Int      @id @default(autoincrement())
+  inviter_id Int      
+  invitee_id Int
+  created_at DateTime @db.DateTime(0)
+}
+
+model messages {
+  id        Int      @id @default(autoincrement())
+  user_id   Int
+  chat_id   Int
+  text      String   @db.Text
+  timestamp DateTime @db.Timestamp(0)
+}
+
+
+model tokens {
+  id           Int    @id @default(autoincrement())
+  user_id      Int    @unique
+  refreshToken String @db.VarChar(255)
+}
+
+model users {
+  id       Int    @id @default(autoincrement())
+  login    String @unique @db.VarChar(32)
+  password String @db.VarChar(255)
+  invite   String @db.VarChar(64)
+}
